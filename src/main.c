@@ -7,6 +7,12 @@
 const   int   BASE_CHESSBOARD_SIZE_REF = 104;
 const   unsigned short int  STR_CHESSBOARD_TOTAL_SIZE = 104*100;
 
+char    str_map[100];
+char    *white_cell = "\x1b[47m   \x1b[0m";
+char    *black_cell = "\x1b[40m   \x1b[0m";
+
+
+
 int ft_str_size(char    *str)
 {
     int i;
@@ -35,6 +41,20 @@ void    ft_print_str(char   *str)
     }
 }
 
+void    ft_draw_full_line()
+{
+    int i;
+
+    i = 0;
+
+    while (i < 10)
+    {
+        strcat(str_map,white_cell);        
+        i++;
+    }
+    strcat(str_map,'\n');
+}
+
 void    ft_print_chessboard()
 {
     int spacing;
@@ -47,10 +67,12 @@ void    ft_print_chessboard()
     spacing = 3;
     white_outline_counter = 0;
 
-    str[0] = '\0';
-    white_cell = "\x1b[47m   \x1b[0m";  // white bg + 3 spaces + reset
+    str_map[0] = '\0';
 
-    printf(white_cell);
+    ft_draw_full_line();
+
+
+    printf(str_map);
 }
 
 int main(void)
